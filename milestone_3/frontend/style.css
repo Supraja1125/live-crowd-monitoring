@@ -1,0 +1,30 @@
+body {
+  background: #0f172a;
+  color: white;
+  font-family: Arial;
+  text-align: center;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  width: 220px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.blue { background: #2563eb; }
+.green { background: #16a34a; }
+
+.charts {
+  width: 90%;
+  margin: auto;
+}
+
+.threshold, .exports {
+  margin: 20px;
+}
