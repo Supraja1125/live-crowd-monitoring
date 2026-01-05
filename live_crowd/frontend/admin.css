@@ -1,0 +1,149 @@
+:root {
+  --bg: #020617;
+  --panel: #020617;
+  --card: #020617;
+  --accent: #38bdf8;
+  --accent2: #6366f1;
+  --danger: #ef4444;
+  --text: #e5e7eb;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #020617, #0f172a);
+  color: var(--text);
+}
+
+/* ===== Layout ===== */
+.layout {
+  display: flex;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  width: 230px;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #020617, #020617);
+  padding: 20px;
+}
+
+.sidebar h2 {
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.sidebar li:hover {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #020617;
+  transform: translateX(6px);
+}
+
+.logout {
+  color: var(--danger);
+}
+
+/* ===== Content ===== */
+.content {
+  flex: 1;
+  padding: 24px;
+}
+
+/* ===== Pages ===== */
+.page {
+  animation: fadeSlide 0.4s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Cards ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.card {
+  background: var(--card);
+  padding: 22px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top,
+    rgba(56,189,248,0.25),
+    transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+}
+
+/* ===== Canvas ===== */
+canvas {
+  background: #020617;
+  border-radius: 16px;
+  padding: 12px;
+  animation: fadeSlide 0.6s ease;
+}
+
+/* ===== Buttons ===== */
+button {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border: none;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(99,102,241,0.6);
+}

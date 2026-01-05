@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard | Crowd Monitoring</title>
+  <link rel="stylesheet" href="user.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { display: flex; }
+    .sidebar {
+      width: 260px;
+      background: linear-gradient(180deg, #6d28d9, #4c1d95);
+      color: white;
+      padding: 20px;
+      min-height: 100vh;
+    }
+    .sidebar h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .sidebar button {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.15);
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .sidebar button:hover {
+      background: rgba(255,255,255,0.3);
+    }
+    .content {
+      flex: 1;
+      padding: 20px;
+    }
+    .section { display: none; }
+    .section.active { display: block; }
+  </style>
+</head>
+<body>
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>Admin Controls</h2>
+  <button onclick="showSection('dashboard')">Dashboard</button>
+  <button onclick="showSection('zones')">Zone Management</button>
+  <button onclick="showSection('analytics')">Analytics Overview</button>
+  <button onclick="showSection('export')">Export Data</button>
+  <button onclick="showSection('users')">User Management</button>
+  <button onclick="showSection('camera')">Camera Zones</button>
+  <hr>
+  <button onclick="logout()">Logout</button>
+</div>
+<!-- MAIN CONTENT -->
+<div class="content">
+  <!-- DASHBOARD -->
+  <div id="dashboard" class="section active">
+    <h1>Admin Dashboard</h1>
+    <div class="dashboard">
+      <div class="card"><h3>Total People</h3><div id="total" class="big">0</div></div>
+      <div class="card"><h3>Status</h3><div id="status" class="big safe">SAFE</div></div>
+    </div>
+    <div class="charts-row">
+      <div class="chart-box">
+        <h3>People Over Time</h3>
+        <canvas id="peopleChart"></canvas>
+      </div>
+      <div class="chart-box">
+        <h3>Zone Distribution</h3>
+        <canvas id="zoneChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-box heatmap-box">
+      <h3>Activity Heatmap</h3>
+      <canvas id="heatmapChart"></canvas>
+    </div>
+  </div>
+  <!-- ZONE MANAGEMENT -->
+  <div id="zones" class="section">
+    <h2>Zone Management</h2>
+    <p>Zone 1 Count: <b id="z1"></b></p>
+    <p>Zone 2 Count: <b id="z2"></b></p>
+    <p>Zone 3 Count: <b id="z3"></b></p>
+    <input type="number" id="threshold" placeholder="Set Crowd Threshold">
+    <button onclick="setThreshold()">Update Threshold</button>
+  </div>
+  <!-- ANALYTICS -->
+  <div id="analytics" class="section">
+    <h2>Analytics Overview</h2>
+    <ul>
+      <li>Peak Crowd: <b id="peak"></b></li>
+      <li>Average Crowd: <b id="avg"></b></li>
+      <li>Dominant Zone: <b id="dominant"></b></li>
+    </ul>
+  </div>
+  <!-- EXPORT -->
+  <div id="export" class="section">
+    <h2>Export Data</h2>
+    <button onclick="exportCSV()">Download CSV</button>
+    <br><br>
+    <button onclick="exportPDF()">Download PDF</button>
+  </div>
+  <!-- USER MANAGEMENT -->
+  <div id="users" class="section">
+    <h2>User Management</h2>
+    <p>Active Session Role: <b id="roleInfo"></b></p>
+    <p>Last Login: <b id="loginTime"></b></p>
+  </div>
+  <!-- CAMERA -->
+  <div id="camera" class="section">
+    <h2>Camera Zones</h2>
+    <p>Camera Status: <span style="color:lime">LIVE</span></p>
+    <p>Total Zones Configured: 3</p>
+  </div>
+</div>
+<script src="admin.js"></script>
+</body>
+</html>

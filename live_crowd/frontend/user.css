@@ -1,0 +1,137 @@
+:root {
+  --bg-main: #0b0014;
+  --bg-panel: #12001f;
+  --bg-card: #1b0030;
+
+  --purple-1: #7c3aed;
+  --purple-2: #a855f7;
+  --purple-3: #c084fc;
+
+  --success: #22c55e;
+  --danger: #ef4444;
+
+  --text-main: #f5f3ff;
+  --text-muted: #c4b5fd;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 28px;
+  background: radial-gradient(circle at top, #2b004f, var(--bg-main));
+  color: var(--text-main);
+}
+
+h1 {
+  color: var(--purple-3);
+  margin-bottom: 24px;
+}
+
+h2 {
+  margin-top: 30px;
+  color: var(--text-muted);
+}
+
+/* DASHBOARD CARDS */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  background: linear-gradient(145deg, var(--bg-card), var(--bg-panel));
+  border-radius: 20px;
+  padding: 26px;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.big {
+  font-size: 52px;
+  font-weight: 800;
+  margin-top: 10px;
+  color: #facc15;
+}
+
+.safe {
+  color: var(--success);
+}
+
+.crowded {
+  color: var(--danger);
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0% { text-shadow: 0 0 0 rgba(239,68,68,0.4); }
+  50% { text-shadow: 0 0 16px rgba(239,68,68,0.9); }
+  100% { text-shadow: 0 0 0 rgba(239,68,68,0.4); }
+}
+
+/* ZONES */
+.zones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+  margin-top: 12px;
+}
+
+.zone {
+  background: linear-gradient(145deg, #020617, #0f001c);
+  padding: 18px;
+  border-radius: 16px;
+  border-left: 4px solid var(--purple-2);
+}
+
+/* CHARTS */
+.charts-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.chart-box {
+  background: linear-gradient(145deg, #020617, #0f001c);
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.55);
+}
+
+.chart-box h3 {
+  margin-bottom: 12px;
+  color: var(--purple-3);
+}
+
+.heatmap-box {
+  margin-top: 24px;
+  height: 360px;
+}
+
+.heatmap-box canvas {
+  height: 280px !important;
+}
+
+/* BUTTON */
+button {
+  margin-top: 28px;
+  background: linear-gradient(135deg, var(--purple-2), var(--purple-1));
+  border: none;
+  padding: 12px 26px;
+  border-radius: 999px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+button:hover {
+  transform: scale(1.05);
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Dashboard | Crowd Monitoring</title>
+
+  <link rel="stylesheet" href="user.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<h1>User Dashboard</h1>
+
+<!-- TOP CARDS -->
+<div class="dashboard">
+  <div class="card">
+    <h3>Total People</h3>
+    <div id="total" class="big">0</div>
+  </div>
+
+  <div class="card">
+    <h3>Status</h3>
+    <div id="status" class="big safe">SAFE</div>
+  </div>
+</div>
+
+<!-- ZONES -->
+<h2>Zone Distribution</h2>
+<div class="zones">
+  <div class="zone">Zone 1: <span id="z1">0</span></div>
+  <div class="zone">Zone 2: <span id="z2">0</span></div>
+  <div class="zone">Zone 3: <span id="z3">0</span></div>
+</div>
+
+<!-- ANALYTICS -->
+<h2>Analytics</h2>
+
+<div class="charts-row">
+  <div class="chart-box">
+    <h3>People Count Over Time</h3>
+    <canvas id="peopleChart"></canvas>
+  </div>
+
+  <div class="chart-box">
+    <h3>Zone-wise Distribution</h3>
+    <canvas id="zoneChart"></canvas>
+  </div>
+</div>
+
+<div class="chart-box heatmap-box">
+  <h3>Live Activity Heatmap</h3>
+  <canvas id="heatmapChart"></canvas>
+</div>
+
+<button onclick="logout()">Logout</button>
+
+<script src="script.js"></script>
+</body>
+</html>
