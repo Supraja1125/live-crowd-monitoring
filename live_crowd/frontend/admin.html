@@ -64,7 +64,7 @@
     </div>
     <div class="charts-row">
       <div class="chart-box">
-        <h3>People Over Time</h3>
+        <h3>People Count Over Time</h3>
         <canvas id="peopleChart"></canvas>
       </div>
       <div class="chart-box">
@@ -72,11 +72,13 @@
         <canvas id="zoneChart"></canvas>
       </div>
     </div>
-    <div class="chart-box heatmap-box">
-      <h3>Activity Heatmap</h3>
-      <canvas id="heatmapChart"></canvas>
-    </div>
-  </div>
+
+   <div class="chart-box heatmap-box">
+  <h3>Activity Heatmap</h3>
+  <!-- Heatmap -->
+  <canvas id="heatmapCanvas" width="600" height="220"></canvas> </div>
+</div>
+
   <!-- ZONE MANAGEMENT -->
   <div id="zones" class="section">
     <h2>Zone Management</h2>
@@ -87,14 +89,32 @@
     <button onclick="setThreshold()">Update Threshold</button>
   </div>
   <!-- ANALYTICS -->
-  <div id="analytics" class="section">
-    <h2>Analytics Overview</h2>
-    <ul>
-      <li>Peak Crowd: <b id="peak"></b></li>
-      <li>Average Crowd: <b id="avg"></b></li>
-      <li>Dominant Zone: <b id="dominant"></b></li>
-    </ul>
+<div id="analytics" class="section">
+  <h2>Analytics Overview</h2>
+
+  <!-- SUMMARY -->
+  <ul>
+    <li>Peak Crowd: <b id="peak"></b></li>
+    <li>Average Crowd: <b id="avg"></b></li>
+    <li>Dominant Zone: <b id="dominant"></b></li>
+  </ul>
+
+  <br>
+
+ <div class="analytics-grid">
+  <div class="chart-box">
+    <h3>Hourly Crowd Trend</h3>
+    <canvas id="hourlyChart"></canvas>
   </div>
+
+  <div class="chart-box">
+    <h3>Weekly Crowd Trend</h3>
+    <canvas id="weeklyChart"></canvas>
+  </div>
+</div>
+</div>
+
+
   <!-- EXPORT -->
   <div id="export" class="section">
     <h2>Export Data</h2>

@@ -13,6 +13,7 @@ DATA = {
     "people": 0,
     "zones": {"zone1": 0, "zone2": 0, "zone3": 0},
     "status": "SAFE",
+    "alert": False,
     "history": []
 }
 
@@ -59,6 +60,7 @@ def update():
     DATA["people"] = payload.get("people", 0)
     DATA["zones"] = {k: payload[k] for k in payload if k.startswith("zone")}
     DATA["status"] = "CROWDED" if DATA["people"] >= THRESHOLD else "SAFE"
+    DATA["alert"] = DATA["people"] >= THRESHOLD
 
     DATA["history"].append({
         "time": datetime.datetime.now().strftime("%H:%M:%S"),
@@ -145,6 +147,34 @@ def export_csv():
         for h in DATA["history"]:
             writer.writerow([h["time"], h["count"]])
     return send_file("data_log.csv", as_attachment=True)
+@app.route("/analytics", methods=["GET"])
+def analytics():
+    user = verify_token(request)
+    if not user:
+        return jsonify({"msg": "Unauthorized"}), 401
+
+    hourly = {str(h): [] for h in range(24)}
+    weekly = {"Mon":[], "Tue":[], "Wed":[], "Thu":[], "Fri":[], "Sat":[], "Sun":[]}
+
+    for h in DATA["history"]:
+        t = datetime.datetime.strptime(h["time"], "%H:%M:%S")
+        hourly[str(t.hour)].append(h["count"])
+        weekly[t.strftime("%a")].append(h["count"])
+
+    hourly_avg = {
+        h: round(sum(v)/len(v), 2) if v else 0
+        for h, v in hourly.items()
+    }
+
+    weekly_avg = {
+        d: round(sum(v)/len(v), 2) if v else 0
+        for d, v in weekly.items()
+    }
+
+    return jsonify({
+        "hourly": hourly_avg,
+        "weekly": weekly_avg
+    })
 
 
 if __name__ == "__main__":
