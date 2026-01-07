@@ -25,17 +25,17 @@ This project is developed as part of the **Infosys Springboard Program** and is 
 ## 🧩 System Architecture
 
 Camera / Video Feed
-↓
+->
 YOLOv8 Person Detection
-↓
+->
 Deep SORT Tracking
-↓
+->
 Zone-wise Counting Logic
-↓
+->
 Flask Backend API
-↓
+->
 JWT Authentication
-↓
+->
 Admin Dashboard / User Dashboard
 
 ---
